@@ -1,0 +1,78 @@
+<!--Main HTML, use to theme other HTML docs-->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Cybersecurity Toolkit{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'base/favicon.png' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+        <style>
+            h1 {
+                color: white;
+            }
+
+            .header {
+                background-color: #0d6efd;
+                border-bottom: 50px grey;
+                /*padding: 20px 10px*/
+                padding-bottom: 20px;
+                margin-bottom: 30px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .header div {
+                display: flex;
+                flex: 1 0 100%;
+                justify-content: space-around;
+            }
+
+            .watermark {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                position:sticky;
+            }
+    
+            .watermark div {
+                display: flex;
+                flex: 1 0 100%;
+                justify-content: center;
+            }
+
+            html, body {
+                margin: 0;
+                height: 100%;
+            }
+        </style>
+
+        {% block styling %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <div class="header">
+            <div><a href="{% url 'home' %}">
+                <img src="{% static 'base/favicon.png' %}" alt="Home" style="width:50px;height:50px;padding-top: 15px;">
+            </a></div>
+            <div><h1>{% block pagename %} Cybersecurity Toolkit {% endblock %}</h1></div>
+        </div>
+
+        {% block content %}
+        {% endblock content %}
+        
+        <div class="watermark">
+            <div> <a href="https://linktr.ee/Daniooo" target="_blank">
+                <p>Made by Daniooo</p>
+            </a></div>
+            <div><a href="https://linktr.ee/Daniooo" target="_blank">
+                <img src="{% static 'base/Daniooo.png' %}" alt="Daniooo">
+            </a></div>
+        </div>
+    </body>
+</html>

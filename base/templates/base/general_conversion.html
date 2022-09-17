@@ -1,0 +1,101 @@
+{% extends 'base/main.html' %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% block pagename %}General Conversion{% endblock %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    </head>
+
+    {% block styling %}
+    <style>
+        .contents {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .contents div {
+            display: flex;
+            flex: 1 0 100%;
+            justify-content: space-around;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .textbox {
+            width:500px;
+            height: 100px;
+            align-self: center;
+        }
+
+        .convert {
+            width:500px;
+            height:100px;
+            align-self: center;
+        }
+
+        .outputText {
+            margin-bottom: 2px;
+        }
+
+        #error {
+            color: rgb(251, 7, 7);
+        }
+    </style>
+    {% endblock %}
+
+    <body>
+        {% block content %}
+        <div class="contents">
+            <div>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if output %}
+                    <div><select name="Input Type" id="inputType">
+                        <option value="Binary"{{binAelected}}>Binary</option>
+                        <option value="Hexadecimal"{{hexSelected}}>Hexadecimal</option>
+                        <option value="Decimal"{{decSelected}}>Decimal</option>
+                        <option value="Ascii"{{ascSelected}}>Ascii</option>
+                    </select></div>
+                    <div><input name="input" class="form-control textbox" type="text" value="{{input}}"></div>
+                    {% else %}
+                    <div><select name="Input Type" id="inputType">
+                        <option value="Binary">Binary</option>
+                        <option value="Hexadecimal">Hexadecimal</option>
+                        <option value="Decimal">Decimal</option>
+                        <option value="Ascii">Ascii</option>
+                    </select></div>
+                    <div><input name="input" placeholder="0x41" class="form-control textbox" type="text"></div>
+                    {% endif %} 
+                    <div><button type="submit" class="btn btn-outline-success convert" action="{% url 'general-conversion' %}">Convert</button></div>
+                
+                    {% if output %}
+                    <p id="error"><strong>{{error}}</strong></p>
+                    {% endif %}
+                    
+                    {% if output %}
+                    <p class="outputText">Binary:</p>
+                    <div><input name="binaryOutput" class="form-control textbox" type="text" value="{{binaryOutput}}"></div>
+                    <p class="outputText">Hexadecimal:</p>
+                    <div><input name="hexOutput" class="form-control textbox" type="text" value="{{hexOutput}}"></div>
+                    <p class="outputText">Decimal:</p>
+                    <div><input name="decimalOutput" class="form-control textbox" type="text" value="{{decimalOutput}}"></div>
+                    <p class="outputText">Ascii:</p>
+                    <div><input name="asciiOutput" class="form-control textbox" type="text" value="{{asciiOutput}}"></div>
+                    {% else %}
+                    <p class="outputText">Binary:</p>
+                    <div><input name="binaryOutput" placeholder="01000001" class="form-control textbox" type="text"></div>
+                    <p class="outputText">Hexadecimal:</p>
+                    <div><input name="hexOutput" placeholder="0x41" class="form-control textbox" type="text"></div>
+                    <p class="outputText">Decimal:</p>
+                    <div><input name="decimalOutput" placeholder="65" class="form-control textbox" type="text"></div>
+                    <p class="outputText">Ascii:</p>
+                    <div><input name="asciiOutput" placeholder="A" class="form-control textbox" type="text"></div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        {% endblock content %}
+    </body>
+</html>
