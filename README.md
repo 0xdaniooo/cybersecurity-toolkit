@@ -8,7 +8,7 @@
 - XOR calculator
 - General convertor
 - Colourful ASCII table
-- + quality of life functionality
+- Quality of life addons
 
 # Home Page
 ![Home Page](/Imgs/1.png)
