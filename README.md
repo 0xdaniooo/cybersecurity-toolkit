@@ -1,6 +1,9 @@
 # cybersecurity-toolkit
  A Django website which provides many useful tools when working in the realm of cybersecurity.
  
+## About
+Shortly before the development of this website, I had been doing a lot of reverse engineering challenges on crackmes.one in my spare time. I had been making use of online ASCII convertors for decoding bytes however this could take time as sometimes the values needed some cleaning before they would be accepted. This gave me the idea of making my own convertor with some custom functionality such as my hex to ASCII convertor which would perform the cleaning itself. After that, I expanded the project with various other tools that would be helpful to have at my disposal.
+ 
 ## Features
 - Hexadecimal to ascii (and vice versa)
 - Hexadecimal to decimal (and vice versa)
